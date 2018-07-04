@@ -42,6 +42,7 @@ router.post('/', (req, res, next) => {
   Post.create(newPost)
     .then(result => {
       res
+        .location(`${req.originalUrl}/${result.id}`)
         .status(201)
         .json(result);
     })
@@ -49,5 +50,26 @@ router.post('/', (req, res, next) => {
       next(err);
     });
 });
+
+/* ========== Create Post ========== */
+router.delete('/:id', (req, res, next) => {
+  const { id } = req.params;
+
+  /***** Never trust users - validate input *****/
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+
+  Post.findByIdAndRemove(id)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 
 module.exports = router;
