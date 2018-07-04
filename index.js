@@ -25,6 +25,8 @@ app.use(
   })
 );
 
+app.use(express.json());
+
 app.use('/api/posts', postRouter);
 app.use('/api/events', eventRouter);
 

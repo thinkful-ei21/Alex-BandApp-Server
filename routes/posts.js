@@ -24,23 +24,24 @@ router.get('/', (req, res, next) => {
 
 /* ========== Create Post ========== */
 router.post('/', (req, res, next) => {
+
+  console.log(req.body)
   
   const { message, mediaUrl } = req.body;
 
   /***** Never trust users - validate input *****/
-  if (!title) {
+  if (!message) {
     const err = new Error('Missing `message` in request body');
     err.status = 400;
     return next(err);
   }
 
 
-  const newNote = { title, content, folderId, tags };
+  const newPost = { message, mediaUrl };
 
-  Note.create(newNote)
+  Post.create(newPost)
     .then(result => {
       res
-        .location(`${req.originalUrl}/${result.id}`)
         .status(201)
         .json(result);
     })
