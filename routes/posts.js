@@ -11,7 +11,6 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   
   Post.find()
-    //.populate('tags')
     .sort({ createdAt: 'desc' })
     .limit(10)
     .then(results => {
@@ -22,10 +21,28 @@ router.get('/', (req, res, next) => {
     });
 });
 
+/* ========== Get Single Post ========== */
+router.get('/:id', (req, res, next) => {
+  
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+
+  Post.findById(id)
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 /* ========== Create Post ========== */
 router.post('/', (req, res, next) => {
-
-  console.log(req.body)
   
   const { message, mediaUrl } = req.body;
 
@@ -35,8 +52,6 @@ router.post('/', (req, res, next) => {
     err.status = 400;
     return next(err);
   }
-
-
   const newPost = { message, mediaUrl };
 
   Post.create(newPost)
@@ -51,7 +66,34 @@ router.post('/', (req, res, next) => {
     });
 });
 
-/* ========== Create Post ========== */
+/* ========== PUT/UPDATE A SINGLE ITEM ========== */
+router.put('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const { message, mediaUrl } = req.body;
+
+  /***** Never trust users - validate input *****/
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
+
+  const updatePost = { message, mediaUrl };
+
+  Post.findByIdAndUpdate(id, updatePost, { new: true })
+    .then(result => {
+      if (result) {
+        res.json(result);
+      } else {
+        next();
+      }
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+/* ========== Delete Post ========== */
 router.delete('/:id', (req, res, next) => {
   const { id } = req.params;
 
