@@ -9,10 +9,11 @@ const Location = require('../models/locations')
 const passport = require('passport');
 
 const router = express.Router();
+const jwtAuth = passport.authenticate('jwt', {session: false, failWithError: true})
 
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/', (req, res, next) => {
-  
+
   Event.find()
     .populate('location')
     .sort({ eventDate: 'asc' })
@@ -27,7 +28,7 @@ router.get('/', (req, res, next) => {
 
 /* ========== Get Single Event ========== */
 router.get('/:id', (req, res, next) => {
-  
+
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -46,8 +47,8 @@ router.get('/:id', (req, res, next) => {
 });
 
 /* ========== Create Post ========== */
-router.post('/', (req, res, next) => {
-  
+router.post('/', jwtAuth, (req, res, next) => {
+
   const { title, location, description, eventDate, picUrl } = req.body;
 
   /***** Never trust users - validate input *****/
@@ -71,7 +72,7 @@ router.post('/', (req, res, next) => {
 });
 
 /* ========== PUT/UPDATE A SINGLE ITEM ========== */
-router.put('/:id', (req, res, next) => {
+router.put('/:id', jwtAuth, (req, res, next) => {
   const { id } = req.params;
   const { title, location, description, eventDate, picUrl } = req.body;
 
@@ -98,7 +99,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 /* ========== Delete Post ========== */
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', jwtAuth, (req, res, next) => {
   const { id } = req.params;
 
   /***** Never trust users - validate input *****/

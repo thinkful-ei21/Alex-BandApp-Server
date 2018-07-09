@@ -8,9 +8,11 @@ const Post = require('../models/posts');
 const Location = require('../models/locations');
 const Event = require('../models/events');
 
+
 const seedPosts = require('../db/seed/posts');
 const seedLocations = require('../db/seed/locations');
 const seedEvents = require('../db/seed/events');
+
 
 console.log(`Connecting to mongodb at ${MONGODB_URI}`);
 mongoose.connect(MONGODB_URI)
@@ -28,6 +30,8 @@ mongoose.connect(MONGODB_URI)
       Location.createIndexes(),
 
       Event.insertMany(seedEvents)
+
+      
     ]);
   })
   .then(() => {
