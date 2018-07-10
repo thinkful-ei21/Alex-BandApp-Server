@@ -16,6 +16,23 @@ router.get('/', (req, res, next) => {
 
   Event.find()
     .populate('location')
+    .populate('band')
+    .sort({ eventDate: 'asc' })
+    .limit(10)
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+/* ========== GET/READ ALL ITEMS ========== */
+router.post('/byBand', (req, res, next) => {
+  const bandId = req.body.id
+  Event.find({band: bandId})
+    .populate('location')
+    .populate('band')
     .sort({ eventDate: 'asc' })
     .limit(10)
     .then(results => {
@@ -49,7 +66,7 @@ router.get('/:id', (req, res, next) => {
 /* ========== Create Post ========== */
 router.post('/', jwtAuth, (req, res, next) => {
 
-  const { title, location, description, eventDate, picUrl } = req.body;
+  const { title, location, description, eventDate, picUrl, band } = req.body;
 
   /***** Never trust users - validate input *****/
   if (!title) {
@@ -57,7 +74,7 @@ router.post('/', jwtAuth, (req, res, next) => {
     err.status = 400;
     return next(err);
   }
-  const newEvent = { title, location, description, eventDate, picUrl };
+  const newEvent = { title, location, description, eventDate, picUrl, band };
 
   Event.create(newEvent)
     .then(result => {

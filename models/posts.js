@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
   message: { type: String, required: true},
   mediaUrl: String,
+  band:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Band' }]
 });
 
 // Add `createdAt` and `updatedAt` fields

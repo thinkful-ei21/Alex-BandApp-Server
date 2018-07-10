@@ -5,7 +5,8 @@ const eventSchema = new mongoose.Schema({
   description: String,
   location:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Location' }],
   picUrl: String,
-  eventDate: {type: Date, required: true}
+  eventDate: {type: Date, required: true},
+  band:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Band' }]
 });
 
 // Add `createdAt` and `updatedAt` fields

@@ -4,20 +4,23 @@
         "description": "July 18th come see Artificial Stars rock the house! Bloop blop will open the night at 8pm. Tickets are $5 at the door.",
         "location": "000000000000000000000000",
         "picUrl": "http://vpimgs.s3.amazonaws.com/alternative-concert-flyer.jpg",
-        "eventDate": "7/18/2018"
+        "eventDate": "7/18/2018",
+        "band": "000000000000000000000010"
     },
     {
         "title": "Artificial Stars featuring shmoople moops",
         "description": "On July 24th traveling band shmoople moops will be stopping by to rock the house! Artifical Stars will open up the show at 9pm. Show is FREE!!",
         "location": "000000000000000000000001",
         "picUrl": "https://s3.envato.com/files/231925731/07_Live%20concert%20Flyer%20Template%20V13.jpg",
-        "eventDate": "7/24/2018"
+        "eventDate": "7/24/2018",
+        "band": "000000000000000000000010"
     },
     {
         "title": "Jam night hosted by Artifical Stars",
         "description": "Artificial Stars will be hosting Jam Night this week. Get down here early to sign up!.",
         "location": "000000000000000000000000",
         "picUrl": "https://www.kelownanow.com/image/w1600-h1600/files/JAM-NIGHT-1.jpeg",
-        "eventDate": "8/4/2018"
+        "eventDate": "8/4/2018",
+        "band": "000000000000000000000010"
     }   
 ]

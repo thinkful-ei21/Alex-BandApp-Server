@@ -7,11 +7,12 @@ const { MONGODB_URI } = require('../config');
 const Post = require('../models/posts');
 const Location = require('../models/locations');
 const Event = require('../models/events');
-
+const Band = require('../models/bands')
 
 const seedPosts = require('../db/seed/posts');
 const seedLocations = require('../db/seed/locations');
 const seedEvents = require('../db/seed/events');
+const seedBands = require('../db/seed/bands');
 
 
 console.log(`Connecting to mongodb at ${MONGODB_URI}`);
@@ -29,7 +30,9 @@ mongoose.connect(MONGODB_URI)
       Location.insertMany(seedLocations),
       Location.createIndexes(),
 
-      Event.insertMany(seedEvents)
+      Event.insertMany(seedEvents),
+
+      Band.insertMany(seedBands)
 
       
     ]);

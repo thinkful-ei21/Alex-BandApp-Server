@@ -5,12 +5,32 @@ const mongoose = require('mongoose');
 
 const Post = require('../models/posts');
 
+const passport = require('passport');
+const jwtAuth = passport.authenticate('jwt', {session: false, failWithError: true})
 const router = express.Router();
 
 /* ========== Get Posts ========== */
 router.get('/', (req, res, next) => {
   
+  
+
   Post.find()
+    .populate('band')
+    .sort({ createdAt: 'desc' })
+    .limit(10)
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+/* ========== Get Posts by Band ========== */
+router.post('/byBand', (req, res, next) => {
+  const bandId = req.body.id
+  Post.find({band: bandId})
+    .populate('band')
     .sort({ createdAt: 'desc' })
     .limit(10)
     .then(results => {
@@ -42,9 +62,9 @@ router.get('/:id', (req, res, next) => {
 });
 
 /* ========== Create Post ========== */
-router.post('/', (req, res, next) => {
+router.post('/', jwtAuth, (req, res, next) => {
   
-  const { message, mediaUrl } = req.body;
+  const { message, mediaUrl, band } = req.body;
 
   /***** Never trust users - validate input *****/
   if (!message) {
@@ -52,7 +72,7 @@ router.post('/', (req, res, next) => {
     err.status = 400;
     return next(err);
   }
-  const newPost = { message, mediaUrl };
+  const newPost = { message, mediaUrl, band };
 
   Post.create(newPost)
     .then(result => {
@@ -67,7 +87,7 @@ router.post('/', (req, res, next) => {
 });
 
 /* ========== PUT/UPDATE A SINGLE ITEM ========== */
-router.put('/:id', (req, res, next) => {
+router.put('/:id', jwtAuth, (req, res, next) => {
   const { id } = req.params;
   const { message, mediaUrl } = req.body;
 
@@ -94,7 +114,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 /* ========== Delete Post ========== */
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', jwtAuth,  (req, res, next) => {
   const { id } = req.params;
 
   /***** Never trust users - validate input *****/

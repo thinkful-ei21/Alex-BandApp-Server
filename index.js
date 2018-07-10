@@ -17,6 +17,7 @@ const { localStrategy } = require('./auth/strategies');
 const authRouter = require('./routes/auth')
 const postRouter = require('./routes/posts');
 const eventRouter = require('./routes/events');
+const bandRouter = require('./routes/bands')
 
 mongoose.Promise = global.Promise;
 
@@ -55,6 +56,7 @@ app.use('/api/posts', postRouter);
 app.use('/api/events', eventRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter.router);
+app.use('/api/bands', bandRouter)
 
 function runServer(port = PORT) {
   const server = app
