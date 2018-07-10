@@ -1,0 +1,15 @@
+[{
+    "username": "manny1806",
+    "password": "$2a$10$0JhDhD5KaGM5K6GgxmorbO81YLqXZH6t0qyVbMpPzgADDsxkT6h3W",
+    "firstName": "Alex",
+    "lastName": "Widner",
+    "band": "000000000000000000000010"
+},
+{
+    "username": "coolguy",
+    "password": "$2a$10$0JhDhD5KaGM5K6GgxmorbO81YLqXZH6t0qyVbMpPzgADDsxkT6h3W",
+    "firstName": "Joe",
+    "lastName": "Widner",
+    "band": "000000000000000000000011"
+}
+]
