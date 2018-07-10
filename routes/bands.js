@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Band = require('../models/bands');
+const User = require('../models/users')
 
 const router = express.Router();
 
