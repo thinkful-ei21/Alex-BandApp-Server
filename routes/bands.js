@@ -42,6 +42,7 @@ router.get('/:name', (req, res, next) => {
     });
 });
 
+
 /* ========== Create Band ========== */
 router.post('/', (req, res, next) => {
   
