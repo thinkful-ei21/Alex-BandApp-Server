@@ -65,7 +65,7 @@ router.get('/:id', (req, res, next) => {
 
 /* ========== Create Post ========== */
 router.post('/', jwtAuth, (req, res, next) => {
-
+  console.log(req.body)
   const { title, location, description, eventDate, picUrl, band } = req.body;
 
   /***** Never trust users - validate input *****/

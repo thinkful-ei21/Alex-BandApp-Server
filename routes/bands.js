@@ -48,20 +48,6 @@ router.post('/', (req, res, next) => {
   
   const {username, bandName: name, bandUrl} = req.body;
 
-  // User.find({username})
-  //   .count()
-  //   .then(count => {
-  //     if (count > 0) {
-  //       // There is an existing user with the same username
-  //       return Promise.reject({
-  //         code: 422,
-  //         reason: 'ValidationError',
-  //         message: 'Username already taken',
-  //         location: 'username'
-  //   });
-  // }})
-
-  /***** Never trust users - validate input *****/
   if (!name) {
     const err = new Error('Missing `name` in request body');
     err.status = 400;

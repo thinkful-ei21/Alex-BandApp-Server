@@ -26,5 +26,61 @@
         "description": "Some bigger but, NONE BETTER!!",
         "picUrl": "http://s3.amazonaws.com/product-images.imshopping.com/nimblebuy/1000-martys-tap-gift-certificates-for-500-3712712-regular.jpg",
         "websiteUrl": "http://www.martystap.com/"
+    },
+    {
+        "_id": "000000000000000000000002",
+        "name": "Hard Rock Hotel & Casino",
+        "address": {
+            "streetName": "3rd Street",
+            "streetNum": "111",
+            "city": "Sioux City",
+            "state": "IA",
+            "zipcode": "51101"
+        },
+        "description": "See live music and entertainment acts weekly ranging from local to national acts in this unique venue. With max capacity of 850, this intimate venue invites you to get within sweating distance of all of the rock, pop, country and hip hop you love.",
+        "picUrl": "https://www.hardrockcasinosiouxcity.com/wp-content/uploads/2017/11/logo-anthem-300x250.png",
+        "websiteUrl": "https://www.hardrockcasinosiouxcity.com/nightlife/anthem/"
+    },
+    {
+        "_id": "000000000000000000000003",
+        "name": "Ickey Nickel Bar & Grill",
+        "address": {
+            "streetName": "41st Street",
+            "streetNum": "4700",
+            "city": "Sioux City",
+            "state": "IA",
+            "zipcode": "51108"
+        },
+        "description": "",
+        "picUrl": "https://i.ytimg.com/vi/eNWR_1E5NOs/maxresdefault.jpg",
+        "websiteUrl": "https://www.facebook.com/IckeyNickel/"
+    },
+    {
+        "_id": "000000000000000000000004",
+        "name": "Work and Church Booze Parlor",
+        "address": {
+            "streetName": "4th Street",
+            "streetNum": "215",
+            "city": "Sioux City",
+            "state": "IA",
+            "zipcode": "51101"
+        },
+        "description": "We are a welcoming hole in the wall watering hole. Folks will enjoy good conversation, great drinks, and cold beer. Our establishment is small but mighty.",
+        "picUrl": "https://i.ebayimg.com/images/g/pEMAAOSwU-pXql2U/s-l300.jpg",
+        "websiteUrl": "https://www.facebook.com/workandchurch.boozeparlor/"
+    },
+    {
+        "_id": "000000000000000000000005",
+        "name": "Vangarde Arts",
+        "address": {
+            "streetName": "Pierce Street",
+            "streetNum": "416",
+            "city": "Sioux City",
+            "state": "IA",
+            "zipcode": "51101"
+        },
+        "description": "Vangarde Arts is the result of years of passion and sharing ideas within a group of innovative thinkers! Led by local promoter Brent Stockton, a dedicated group of volunteers have invested time and energy into creating a non-profit center that magically blends visual art with performing art in an open and inviting atmosphere. Appropriately named Vangarde Arts, this group is leading the way and exploring new boundaries for the arts, adding to the already growing cultural district in downtown Sioux City. The gallery lounge and intimate listening room create a wonderful space for patrons to enjoy the social and educational value of original art forms.",
+        "picUrl": "http://downtownsiouxcity.com/wp-content/uploads/2015/03/Vangarde.jpg",
+        "websiteUrl": "http://www.vangardearts.com/"
     }
 ]
