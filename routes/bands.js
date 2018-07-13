@@ -21,6 +21,16 @@ router.get('/', (req, res, next) => {
     });
 });
 
+router.post('/checkNameExist', (req, res) =>{
+  return Band.find({name: req.body.name}).count()
+    .then((count) => res.json(count))
+})
+
+router.post('/checkUrlExist', (req, res) =>{
+  return Band.find({bandUrl: req.body.bandUrl}).count()
+    .then((count) => res.json(count))
+})
+
 /* ========== Get Single Band ========== */
 router.get('/:name', (req, res, next) => {
   
