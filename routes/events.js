@@ -65,8 +65,8 @@ router.get('/:id', (req, res, next) => {
 
 /* ========== Create Post ========== */
 router.post('/', jwtAuth, (req, res, next) => {
-  console.log(req.body)
-  const { title, location, description, eventDate, picUrl, band } = req.body;
+  const { title, location, description, picUrl, band } = req.body;
+  let { eventDate } = req.body;
 
   /***** Never trust users - validate input *****/
   if (!title) {
@@ -74,8 +74,9 @@ router.post('/', jwtAuth, (req, res, next) => {
     err.status = 400;
     return next(err);
   }
+  eventDate = eventDate.concat(':00.000Z')
   const newEvent = { title, location, description, eventDate, picUrl, band };
-
+  
   Event.create(newEvent)
     .then(result => {
       res
@@ -91,7 +92,7 @@ router.post('/', jwtAuth, (req, res, next) => {
 /* ========== PUT/UPDATE A SINGLE ITEM ========== */
 router.put('/:id', jwtAuth, (req, res, next) => {
   const { id } = req.params;
-  const { title, location, description, eventDate, picUrl } = req.body;
+  let { title, location, description, eventDate, picUrl } = req.body;
 
   /***** Never trust users - validate input *****/
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -99,9 +100,9 @@ router.put('/:id', jwtAuth, (req, res, next) => {
     err.status = 400;
     return next(err);
   }
-
+  eventDate = eventDate.concat(':00.000Z')
   const updateEvent = { title, location, description, eventDate, picUrl };
-
+  
   Event.findByIdAndUpdate(id, updateEvent, { new: true })
     .then(result => {
       if (result) {

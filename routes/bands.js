@@ -56,14 +56,14 @@ router.get('/:name', (req, res, next) => {
 /* ========== Create Band ========== */
 router.post('/', (req, res, next) => {
   
-  const {username, bandName: name, bandUrl} = req.body;
-
+  const {username, bandName: name, bandUrl, bannerUrl} = req.body;
+  console.log(req.body)
   if (!name) {
     const err = new Error('Missing `name` in request body');
     err.status = 400;
     return next(err);
   }
-  const newBand = { name, bandUrl };
+  const newBand = { name, bandUrl, bannerUrl };
 
   Band.create(newBand)
     .then(result => {

@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const bandSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true},
-  bandUrl: { type: String, required: true, unique: true}
+  bandUrl: { type: String, required: true, unique: true},
+  bannerUrl: String
 });
 
 // Add `createdAt` and `updatedAt` fields

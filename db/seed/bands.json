@@ -1,11 +1,13 @@
 [{
     "name": "Artificial Stars",
     "bandUrl": "artificial-stars",
+    "bannerUrl": "https://f4.bcbits.com/img/0013081274_100.png",
     "_id": "000000000000000000000010"
 },
 {
     "name": "The Bloop Blops",
     "bandUrl": "bloopblops",
+    "bannerUrl": "",
     "_id": "000000000000000000000011"
 }
 ]
