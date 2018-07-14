@@ -39,11 +39,11 @@ app.use(
 //   next();
 // });
 
-// app.use(
-//   cors({
-//     origin: CLIENT_ORIGIN
-//   })
-// )
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN
+  })
+)
 
 passport.use( localStrategy)
 passport.use( jwtStrategy);
