@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
-// const {dbConnect} = require('./db-knex');
 
 const { router: usersRouter } = require('./routes/users');
 const { jwtStrategy } = require('./auth/strategies');
@@ -30,12 +29,6 @@ app.use(
   })
 );
 
-// app.use(
-//   cors({
-//     origin: CLIENT_ORIGIN
-//   })
-// );
-
 // app.use(function (req, res, next) {
 //   res.header('Access-Control-Allow-Origin', '*');
 //   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
@@ -46,17 +39,15 @@ app.use(
 //   next();
 // });
 
-app.use(
-  cors({
-    origin: CLIENT_ORIGIN
-  })
-)
-
+// app.use(
+//   cors({
+//     origin: CLIENT_ORIGIN
+//   })
+// )
 
 passport.use( localStrategy)
 passport.use( jwtStrategy);
 
-//const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.use(express.json());
 
