@@ -7,6 +7,19 @@ const Location = require('../models/locations');
 
 const router = express.Router();
 
+/* ========== Get Locations ========== */
+router.get('/', (req, res, next) => {
+  
+  Location.find()
+    .sort({ name: 'desc' })
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 /* ========== Get Bands ========== */
 router.post('/search/:term', (req, res, next) => {
   
