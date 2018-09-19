@@ -54,7 +54,6 @@ All requests and responses are in JSON format.
 |Authentication|https://music-server-sioux-city.herokuapp.com/api/auth|
 |Bands|https://music-server-sioux-city.herokuapp.com/api/bands|
 |Events|https://music-server-sioux-city.herokuapp.com/api/events|
-|Locations|https://music-server-sioux-city.herokuapp.com/api/locations|
 |Posts|https://music-server-sioux-city.herokuapp.com/api/posts|
 
 ## Users
