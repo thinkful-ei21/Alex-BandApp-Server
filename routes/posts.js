@@ -9,11 +9,10 @@ const passport = require('passport');
 const jwtAuth = passport.authenticate('jwt', {session: false, failWithError: true})
 const router = express.Router();
 
+const cloudinary = require('cloudinary');
+
 /* ========== Get Posts ========== */
 router.get('/', (req, res, next) => {
-  
-  
-
   Post.find()
     .populate('band')
     .sort({ createdAt: 'desc' })
@@ -64,14 +63,15 @@ router.get('/:id', (req, res, next) => {
 /* ========== Create Post ========== */
 router.post('/', jwtAuth, (req, res, next) => {
   
-  const { message, mediaUrl, band } = req.body;
-
+  const { message, band, mediaUrl } = req.body;
+  console.log(res.data)
   /***** Never trust users - validate input *****/
   if (!message) {
     const err = new Error('Missing `message` in request body');
     err.status = 400;
     return next(err);
   }
+
   const newPost = { message, mediaUrl, band };
 
   Post.create(newPost)

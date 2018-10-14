@@ -6,12 +6,20 @@ const morgan = require('morgan');
 const passport = require('passport');
 const mongoose = require('mongoose');
 
+const cloudinary = require('cloudinary');
+
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
+
+const {fileUploadMiddleware} = require('./file-upload-middleware');
 
 const { router: usersRouter } = require('./routes/users');
 const { jwtStrategy } = require('./auth/strategies');
 const { localStrategy } = require('./auth/strategies');
+
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 const authRouter = require('./routes/auth')
 const postRouter = require('./routes/posts');
@@ -21,6 +29,12 @@ const locationRouter = require('./routes/locations')
 
 mongoose.Promise = global.Promise;
 
+cloudinary.config({
+  cloud_name: 'siouxcitymusic',
+  api_key: '872932728226311',
+  api_secret: '9HKSukbONUoBzBsIULQi9MZB-zA',
+});
+
 const app = express();
 
 app.use(
@@ -29,15 +43,6 @@ app.use(
   })
 );
 
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-//   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-//   if (req.method === 'OPTIONS') {
-//     return res.send(204);
-//   }
-//   next();
-// });
 
 app.use(
   cors({
@@ -57,6 +62,9 @@ app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter.router);
 app.use('/api/bands', bandRouter)
 app.use('/api/locations', locationRouter)
+
+
+app.post('/api/files', upload.single('mediaUrl'), fileUploadMiddleware);
 
 function runServer(port = PORT) {
   const server = app
